@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ANZUsersApp</string>
+    <string name="company">Company</string>
+    <string name="email">Email</string>
+    <string name="address">Address</string>
+    <string name="zip">Zip</string>
+    <string name="state">State</string>
+    <string name="country">Country</string>
+    <string name="user_photo_desc">%1$s photo</string>
+</resources>

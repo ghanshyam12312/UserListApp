@@ -8,9 +8,7 @@ enum class ErrorType {
 }
 
 class AppExceptions(val customError: CustomError?, val errorType: ErrorType?) :
-    Throwable(customError?.errorMessage) {
-
-}
+    Throwable(customError?.errorMessage)
 
 fun Throwable.toCustomError(): CustomError {
     return CustomError(

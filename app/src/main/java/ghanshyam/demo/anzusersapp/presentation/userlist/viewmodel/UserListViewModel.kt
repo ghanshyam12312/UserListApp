@@ -37,7 +37,7 @@ class UserListViewModel @Inject constructor(
                 }
             },
             block = {
-                getUsersUseCase.invoke(Unit).collect { result ->
+                getUsersUseCase(Unit).collect { result ->
                     when(result) {
                         is ResultModel.Failure<*> -> {
                             sendEffect(

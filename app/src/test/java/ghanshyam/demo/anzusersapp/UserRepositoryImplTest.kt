@@ -5,6 +5,7 @@ import ghanshyam.demo.anzusersapp.core.util.ResultModel
 import ghanshyam.demo.anzusersapp.data.models.UsersModel
 import ghanshyam.demo.anzusersapp.data.remote.UsersApi
 import ghanshyam.demo.anzusersapp.data.repository.UserRepositoryImpl
+import ghanshyam.demo.anzusersapp.utils.TestCoroutineContextProvider
 import ghanshyam.demo.anzusersapp.utils.UserDummyData.usermodelList
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -29,12 +30,14 @@ class UserRepositoryImplTest {
     private lateinit var repository: UserRepositoryImpl
 
     private val testDispatcher = StandardTestDispatcher()
+    private lateinit var coroutineContextProvider: TestCoroutineContextProvider
 
     @Before
     fun setup() {
         Dispatchers.setMain(testDispatcher)
+        coroutineContextProvider = TestCoroutineContextProvider()
         usersApi = mockk()
-        repository = UserRepositoryImpl(usersApi)
+        repository = UserRepositoryImpl(usersApi, coroutineContextProvider)
     }
 
     @After

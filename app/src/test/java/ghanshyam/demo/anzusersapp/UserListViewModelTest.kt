@@ -13,6 +13,7 @@ import ghanshyam.demo.anzusersapp.presentation.userlist.viewmodel.UserListEffect
 import ghanshyam.demo.anzusersapp.presentation.userlist.viewmodel.UserListIntent
 import ghanshyam.demo.anzusersapp.presentation.userlist.viewmodel.UserListState
 import ghanshyam.demo.anzusersapp.presentation.userlist.viewmodel.UserListViewModel
+import ghanshyam.demo.anzusersapp.utils.TestCoroutineContextProvider
 import ghanshyam.demo.anzusersapp.utils.UserDummyData.usersEntity
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -33,7 +34,7 @@ class UserListViewModelTest {
 
     private lateinit var viewModel: UserListViewModel
     private lateinit var getUsersUseCase: GetUsersUseCase
-    private lateinit var coroutineContextProvider: CoroutineContextProvider
+    private lateinit var coroutineContextProvider: TestCoroutineContextProvider
 
     private val testDispatcher = StandardTestDispatcher()
 
@@ -42,19 +43,8 @@ class UserListViewModelTest {
     @Before
     fun setup() {
         Dispatchers.setMain(testDispatcher)
+        coroutineContextProvider = TestCoroutineContextProvider()
         getUsersUseCase = mockk()
-        coroutineContextProvider = object : CoroutineContextProvider {
-
-            override val io: CoroutineDispatcher
-                get() = testDispatcher
-            override val default: CoroutineDispatcher
-                get() = testDispatcher
-            override val main: CoroutineDispatcher
-                get() = testDispatcher
-
-            override fun reset() {
-            }
-        }
 
     }
 
